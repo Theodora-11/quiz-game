@@ -443,6 +443,34 @@ function gameOver() {
 }
 
 
+function restartGame() {
+	nr = 0;
+  scoreNr = 0;
+  lastScore = 0;
+	count = 0;
+	score.innerHTML = '00';
+	countText.style.display = 'block';
+	countNrQuestion.innerHTML = Number(count++);
+
+	wrapperButtons.style.display = 'flex';
+	wrapperColors.style.display = 'flex';
+	gameDialog.close();
+	const containerInputs = document.querySelector('#container-inputs');
+	const inputs = [...containerInputs.querySelectorAll('input')];
+	inputs.forEach(input => input.checked = false);
+	colorQuestion.forEach(question => question.style.background = '');
+	nextQuestionBtn.innerHTML = 'NEXT';
+
+	buttonsChildren.forEach(button => {
+		button.removeAttribute('data-answer');
+		button.style.display = "block";
+	})
+
+	playBtn.removeEventListener('click', hasChooseDomain);
+	playBtn.addEventListener('click', hasChooseDomain);
+	closeGameBtn.removeEventListener('click', restartGame);
+	closeGameBtn.addEventListener('click', alertMessage);
+}
 
         
 
