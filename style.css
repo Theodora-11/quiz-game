@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   overflow: hidden;
 }
 
@@ -20,7 +20,7 @@ main {
   overflow: hidden;
   top: 0;
   width: 90%;
-  height: 100dvh;
+  height: 90dvh;
   max-width: 650px;
   margin-inline: auto;
   position: relative;

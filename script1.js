@@ -81,7 +81,6 @@ function openDomainDialog() {
 }
 
 
-
 //----------------DOMAINS FUNCTION-------------//
 playBtn.addEventListener('click', hasChooseDomain);
 let work; 
@@ -121,82 +120,80 @@ function hasChooseDomain() {
 
 
 const arrBiology = [
-	{
-    question: '1. What is the longest human bone?',
-		rightAnswer: 'femur',
-		wrongAnswer1: 'tibia',
-		wrongAnswer2: 'humerus',
-		wrongAnswer3: 'scapula',
-		
+  {
+    question: '1. What is the longest bone in the human body?',
+    rightAnswer: 'Femur',
+    wrongAnswer1: 'Tibia',
+    wrongAnswer2: 'Humerus',
+    wrongAnswer3: 'Scapula',
   },
-	{
-		question: '2. How many basic senses does a human have?',
-		wrongAnswer1: 3,
-		rightAnswer: 5,
-		wrongAnswer3: 6,
-		wrongAnswer2: 4,
-	},
-	{
-		question: '3. The protein found in hair is called?',
-		rightAnswer: 'keratin',
-		wrongAnswer2: 'melanin',
-		wrongAnswer3: 'epidermis',
-		wrongAnswer1: 'elastin',
-	},
-	{
-		question: '4. What is the largest organ of the human body?', 
-		wrongAnswer1: 'lung',
-		wrongAnswer3: 'hard',
-		wrongAnswer2: 'brain',
-		rightAnswer: 'skin',
-	},
-	{
-		question: '5. Sciatica is a...?',
-		wrongAnswer3: 'mussels',
-		wrongAnswer1: 'organ',
-		rightAnswer: 'nerve',
-		wrongAnswer2: 'bone',
-	},
-	{
-		question: '6. The scaphoid bone is a bone of the...?',
-		wrongAnswer1: 'chest box',
-		rightAnswer: 'pelvis',
-		wrongAnswer2: 'arm',
-		wrongAnswer3: 'cranial box',
-	},
-	{
-		question: "7. Cartilage it's a...?",
-		rightAnswer: 'connective-tissue',
-		wrongAnswer1: 'bone-tissue',
-		wrongAnswer3: 'muscle-tissue',
-		wrongAnswer2: 'epithelial-tissue',
+  {
+    question: '2. How many chambers does the human heart have?',
+    rightAnswer: '4',
+    wrongAnswer1: '2',
+    wrongAnswer2: '3',
+    wrongAnswer3: '5',
   },
-	{
-		question: "8. Temporary or total memory loss?",
-		rightAnswer: 'Amnesia',
-		wrongAnswer1: 'Anorexia',
-		wrongAnswer3: 'Depression',
-		wrongAnswer2: 'Headache',
-	}, 
-	{
-		question: "9. Which organ of the body is affected by encephalitis?",
-		rightAnswer: 'brain',
-		wrongAnswer1: 'kidney',
-		wrongAnswer3: 'lung',
-		wrongAnswer2: 'hard',
-	}, 
-	{
-		question: "10. Part of the body affected by peritonitis?",
-		rightAnswer: 'kidney',
-		wrongAnswer1: 'abdomen',
-		wrongAnswer3: 'brain',
-		wrongAnswer2: 'pelvis',
-	}, 
-	{
-		question: 'You finish the questions! Your brain refreshes its memory with every correct question!',
-
-	}
-]
+  {
+    question: '3. Which organ is responsible for filtering blood and producing urine?',
+    rightAnswer: 'Kidney',
+    wrongAnswer1: 'Liver',
+    wrongAnswer2: 'Lungs',
+    wrongAnswer3: 'Pancreas',
+  },
+  {
+    question: '4. What type of joint connects the bones of the skull?',
+    rightAnswer: 'Immovable joint (suture)',
+    wrongAnswer1: 'Ball and socket',
+    wrongAnswer2: 'Hinge',
+    wrongAnswer3: 'Pivot',
+  },
+  {
+    question: '5. Which muscle is primarily responsible for breathing?',
+    rightAnswer: 'Diaphragm',
+    wrongAnswer1: 'Biceps',
+    wrongAnswer2: 'Trapezius',
+    wrongAnswer3: 'Gluteus maximus',
+  },
+  {
+    question: '6. What is the main function of red blood cells?',
+    rightAnswer: 'Carry oxygen',
+    wrongAnswer1: 'Fight infection',
+    wrongAnswer2: 'Clot blood',
+    wrongAnswer3: 'Carry nutrients',
+  },
+  {
+    question: '7. Which part of the brain controls balance and coordination?',
+    rightAnswer: 'Cerebellum',
+    wrongAnswer1: 'Cerebrum',
+    wrongAnswer2: 'Medulla',
+    wrongAnswer3: 'Hippocampus',
+  },
+  {
+    question: '8. The human body has how many pairs of ribs?',
+    rightAnswer: '12',
+    wrongAnswer1: '10',
+    wrongAnswer2: '14',
+    wrongAnswer3: '15',
+  },
+  {
+    question: '9. What is the name of the largest artery in the human body?',
+    rightAnswer: 'Aorta',
+    wrongAnswer1: 'Vena cava',
+    wrongAnswer2: 'Pulmonary artery',
+    wrongAnswer3: 'Carotid artery',
+  },
+  {
+    question: '10. Which gland regulates metabolism by producing thyroid hormones?',
+    rightAnswer: 'Thyroid gland',
+    wrongAnswer1: 'Adrenal gland',
+    wrongAnswer2: 'Pituitary gland',
+    wrongAnswer3: 'Pancreas',
+  },
+  {
+    question: 'You finish the questions! Your brain refreshes its memory with every correct question!',
+  }
+];
 
 const arrGeography = [ 
 	{
@@ -294,12 +291,82 @@ answer4Btn.addEventListener('click', () => {
 })
 
 
+function safeSetNextQuestion() {
+	if (chances > 0 && nr <= 10) {
+		setTimeout(() => {
+			nextQuestionBtn.style.display = 'block';
+			nextQuestionBtn.onclick = work;
+		}, 1500);
+	} else {
+		nextQuestionBtn.style.display = 'none';
+		nextQuestionBtn.onclick = null;
+	}
+}
+
+
+
 let nr = 0;
 let count = 1;
 let scoreNr = 0;
 let lastScore = 0;
+let chances = 3;
+
+buttonsChildren.forEach(button => {
+	button.disabled = false;
+	button.removeEventListener('click', handleAnswerClick);
+	button.addEventListener('click', handleAnswerClick);
+})
+
+function handleAnswerClick(e) {
+	const btnTarget = e.target;
+	const dataRightBtn = btnTarget.dataset.answer;
+
+	if(dataRightBtn === 'right') {
+		rightSound.currentTime = 0;
+		rightSound.play();
+		btnTarget.style.background = 'rgb(6, 194, 6)';
+		buttonsChildren.forEach(button => {
+			button.disabled = true;
+			button.style.color = 'black';
+		})
+		
+		safeSetNextQuestion();
+
+	} else {
+		chances--;
+		wrongSound.play();
+		btnTarget.dataset.answer = 'wrong';
+		btnTarget.style.background = 'rgb(234, 23, 23)';
+		buttonsChildren.forEach(button => {
+			button.disabled = true;
+			button.style.color = 'black';
+		})
+
+		setTimeout(() => { 
+			answer4Btn.style.background = 'rgb(6, 194, 6)';
+			if(!wrongSound.pause()) {
+				wrongSound.pause();
+				wrongSound.currentTime = 0;
+				rightSound.play();
+			}	
+		}, 700);
+		console.log(chances)
+
+		safeSetNextQuestion();
+	}
+
+	if(chances === 0) {	
+		setTimeout(() => {
+			gameOver()
+		}, 1000)
+	}
+	return
+
+}
+
 
 function startQuestionsGame(domain) {
+	if (chances === 0) return;
 	randomButtons();
 	textQuestion.innerHTML = domain[nr].question;
 	answer1Btn.innerHTML = domain[nr].wrongAnswer1;
@@ -307,47 +374,14 @@ function startQuestionsGame(domain) {
 	answer3Btn.innerHTML = domain[nr].wrongAnswer3;
 	answer4Btn.innerHTML = domain[nr].rightAnswer;
 	answer4Btn.dataset.answer = 'right';
-	
+		
 
-	buttonsChildren.forEach(button => button.disabled = false);
-	buttonsChildren.forEach(e => e.addEventListener('click', (e) => {
-		const btnTarget = e.target;
-		const dataRightBtn = btnTarget.dataset.answer;
-
-		if(dataRightBtn === 'right') {
-			rightSound.currentTime = 0;
-			rightSound.play();
-			btnTarget.style.background = 'rgb(6, 194, 6)';
-			buttonsChildren.forEach(button => {
-				button.disabled = true;
-				button.style.color = 'black';
-			})
-			
-			setTimeout(() => { nextQuestionBtn.style.display = 'block' }, 800);
-			nextQuestionBtn.onclick = work;
-
-		} else {
-			wrongSound.play();
-			btnTarget.dataset.answer = 'wrong';
-			btnTarget.style.background = 'rgb(234, 23, 23)';
-			buttonsChildren.forEach(button => {
-				button.disabled = true;
-				button.style.color = 'black';
-			})
-
-			setTimeout(() => { 
-				answer4Btn.style.background = 'rgb(6, 194, 6)';
-				if(!wrongSound.pause()) {
-					wrongSound.pause();
-					wrongSound.currentTime = 0;
-					rightSound.play();
-				}	
-			}, 700);
-
-			setTimeout(() => { nextQuestionBtn.style.display = 'block' }, 1500);
-			nextQuestionBtn.onclick = work;
-		}
-	}))
+	buttonsChildren.forEach(button => {
+		button.disabled = false;
+		button.style.color = '';
+		button.removeEventListener('click', handleAnswerClick);
+		button.addEventListener('click', handleAnswerClick);
+	})
 
 	let lastColor = (colorQuestion.length - 1) - nr;
 	if(nr < 4) {
@@ -360,8 +394,12 @@ function startQuestionsGame(domain) {
 	if(nr > 4 && nr < 10) colorQuestion[lastColor].style.background = 'rgb(6, 194, 6)';
 
   nr++;
-	countNrQuestion.style.color = 'color:rgb(72, 118, 205)';
+	countNrQuestion.style.color = 'rgb(72, 118, 205)';
 	countNrQuestion.innerHTML = Number(count++);
+	if(nr === domain.length - 1) {
+		nextQuestionBtn.innerHTML = 'Finish'
+	}
+	
 	gameOver();	
 }
 
@@ -372,26 +410,6 @@ finishGame.addEventListener('click', closeGameProgress);
 function closeGameProgress() {
 	gameOver();
 	restartGame();
-	// nr = 0;
-  // scoreNr = 0;
-  // lastScore = 0;
-	// count = 0;
-	// score.innerHTML = '00';
-	// countText.style.display = 'block';
-
-	// gameDialog.close();
-	// const containerInputs = document.querySelector('#container-inputs');
-	// const inputs = [...containerInputs.querySelectorAll('input')];
-	// inputs.forEach(input => input.checked = false);
-	// colorQuestion.forEach(question => question.style.background = 'white');
-	// nextQuestionBtn.innerHTML = 'NEXT';
- 
-	// wrapperButtons.style.display = 'flex';
-	// buttonsChildren.forEach(button => {
-	// 	button.removeAttribute('data-answer');
-	// 	button.style.display = "block";
-	// })
-
 	wrapperColors.style.display = 'none';
 	domainAlert.close();
 
@@ -409,7 +427,7 @@ function changeQuestion(x) {
 
 
 function gameOver() {
-	if(nr > 10) {
+	if(nr > 10 || chances === 0) {
 
 		localStorage.setItem('lastScore', lastScore);
 		let highScore = localStorage.getItem('highScore');
@@ -428,17 +446,18 @@ function gameOver() {
 		buttonsChildren.forEach((button) => {
 			button.style.display = "none";
 		})
-		wrapperColors.style.display = 'none';
-
+		
+		textQuestion.innerHTML = arrBiology[arrBiology.length -1].question;
 		winSound.play();
 		countNrQuestion.innerHTML = '0';
+		wrapperColors.style.display = 'none';
 		countText.style.display = 'none';
 		score.innerHTML = `${lastScore}` + '0';
 		nextQuestionBtn.onclick = null;
-    nextQuestionBtn.innerHTML = 'PLAY AGAIN';
 		chooseBtn.removeAttribute('data-domain');
 		closeGameBtn.removeEventListener('click', alertMessage);
 		closeGameBtn.addEventListener('click', restartGame);
+  
 	} 
 }
 
@@ -448,7 +467,14 @@ function restartGame() {
   scoreNr = 0;
   lastScore = 0;
 	count = 0;
+	chances = 3;
 	score.innerHTML = '00';
+
+	answer1Btn.innerHTML = '';
+	answer2Btn.innerHTML = '';
+	answer3Btn.innerHTML = '';
+	answer4Btn.innerHTML = '';
+
 	countText.style.display = 'block';
 	countNrQuestion.innerHTML = Number(count++);
 
@@ -460,12 +486,16 @@ function restartGame() {
 	inputs.forEach(input => input.checked = false);
 	colorQuestion.forEach(question => question.style.background = '');
 	nextQuestionBtn.innerHTML = 'NEXT';
+	
 
 	buttonsChildren.forEach(button => {
 		button.removeAttribute('data-answer');
 		button.style.display = "block";
+		button.style.backgroundColor = 'rgba(211, 211, 211, 0.42)';
 	})
 
+	nextQuestionBtn.onclick = null;
+	nextQuestionBtn.style.display = 'none';
 	playBtn.removeEventListener('click', hasChooseDomain);
 	playBtn.addEventListener('click', hasChooseDomain);
 	closeGameBtn.removeEventListener('click', restartGame);
