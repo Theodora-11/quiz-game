@@ -1,7 +1,31 @@
 :root {
   box-sizing: border-box;
 
+  /*********** COLORS BOARD *********/
+  --backdrop-dark: hsla(0, 0%, 0%, 0.249);
+  --backdrop-light: rgba(255, 252, 252, 0.689);
+  --backdrop-red: rgba(234, 23, 23, 0.179);
+  --principal-color: rgb(41, 106, 149);
+  --dark-blue:  rgb(61, 105, 188);
+  --hover-color1: rgba(75, 151, 201, 0.852);
+  --light-white: rgb(255, 255, 255);
+  --dark-black: rgb(0, 0, 0);
+  --dark-black2: rgba(0, 0, 0, 0.397);
+  --slow-dark: rgba(248, 245, 245, 0);
+  --wrong-color: rgb(226, 8, 8);
+  --light-green: rgb(8, 214, 8);
+  --light-gray: rgb(51, 51, 51);
+  --gold: rgb(255, 215, 0);
+  --dark-red: rgb(234, 23, 23);
+  --heart-lose-color: rgba(208, 141, 141, 0.63);
+
+  /******** DEFAULT SETTINGS *******/
+  --radius: 6px;
+  --width: 100%;
+  --border: 0.625rem;
+  --blur: 2px;
 }
+
 
 *, *::after, *::before {box-sizing: inherit}
 
