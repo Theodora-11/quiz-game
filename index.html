@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="script1.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_right_alt,close&display=block" rel="stylesheet" />
+  <script src="script1.js" type="module"></script>
   <title>Knowledge Questions Game</title>
 </head>
 <body>
 
   <main>
     <div class="container">
-      <img src="question.png" class="question-img"/>
+      <img src="./assets/question.png" class="question-img"/>
       <dialog class="dialog-instructions" id="dialog-instructions">
-        <button class="btn-close-dialog" id="btn-close-dialog">✕</button>
+        <button class="btn-close-dialog material-symbols-outlined" id="btn-close-dialog">close</button>
         <h3>Instructions:</h3>
         <ul class="list-instructions-game">
           <li>Try to pass the test by answering all the general knowledge questions. Put your brain to work with questions from various fields</li>
@@ -23,7 +24,7 @@
       </dialog>
 
       <dialog class="dialog-domain" id="domain-dialog">
-        <button class="btn-close-domain" id="btn-close-domain">✕</button>
+        <button class="btn-close-domain material-symbols-outlined" id="btn-close-domain">arrow_right_alt</button>
         <h4>Chose a domain for your questions:</h4>
 
         <div class="container-inputs" id="container-inputs">
@@ -46,14 +47,23 @@
         <button class="instructions-btn button-front" id="instructions-btn">Instructions Game</button>
         <button class="play-btn button-front" id="play-btn">Play Game</button>
         <button class="choose-btn button-front" id="choose-domain-btn" data-domain>Choose Domain</button>
-        <span class="score-game" id="privies-score">Current score: 00</span>
+        <span class="score-game" id="privies-score">Score: 00</span>
         <span class="score-game" id="high-score">High score: 00</span>
         
       </div>
 
       <dialog class="dialog-game" id="dialog-game">
-        <button class="btn-close-game" id="btn-close-game">✕</button>
-        <span>Score: <span class="score" id="score">00</span></span>
+        <button class="btn-close-game material-symbols-outlined" id="btn-close-game">close</button>
+
+        <div class="wrapper-chances-score">
+          <div class="container-chances">
+            <span class="chance">&#x2764;</span>
+            <span class="chance">&#x2764;</span>
+            <span class="chance">&#x2764;</span>
+          </div>
+          <span>Score: <span class="score" id="score">00</span></span>
+        </div>
+
         <div class="game-board" id="game-board">
           <p class="count-text" id="count-text">
             Question <span class="count-number" id="count-number">1</span> from 10:</p>
@@ -83,7 +93,7 @@
       </dialog>
 
       <dialog class="alert-message" id="alert-message">
-        <button class="btn-close-alert" id="btn-close-alert">✕</button>
+        <button class="btn-close-alert material-symbols-outlined" id="btn-close-alert">close</button>
         <div class="container-alert">
           <p class="alert-text">You have to finish your questions!</p>
           <p>Don't lose <b>your progress!</b></p>
@@ -91,9 +101,9 @@
          <button class="button-close" id="close-game-btn">CLOSE GAME</button>  
       </dialog>
 
-      <audio id="wrong-answer" src="wrong-answer.wav"></audio>
-      <audio id="right-answer" src="right-answer.wav"></audio>
-      <audio id="win-game" src="win-game.wav"></audio>
+      <audio id="wrong-answer" src="./assets/wrong-answer.wav"></audio>
+      <audio id="right-answer" src="./assets/right-answer.wav"></audio>
+      <audio id="win-game" src="./assets/win-game.wav"></audio>
     </div>
 
     <p class="finish chances"></p>
