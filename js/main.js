@@ -1,19 +1,9 @@
 import { arrBiology, arrGeography, arrHistory } from './domains.js';
 import { DOM } from './selectors.js';
+import { checkInputs } from './inputs.js';
 
 
-
-//--------------CHECK VALUE INPUTS------------//
-function checkInputs() {
-	const containerInputs = document.querySelector('#container-inputs');
-	const inputs = [...containerInputs.querySelectorAll('input')];
-		inputs.forEach(e => e.addEventListener('click', (e) => {
-		const inputChecked = inputs.findIndex(e => e.checked);
-		const valueInput = inputs[inputChecked].value;
-		DOM.chooseBtn.dataset.domain = valueInput;
-	}))
-}
-
+checkInputs();
 
 //------------------EVENTS DIALOGS-------------------//
 DOM.instructionsBtn.addEventListener('click', () => {DOM.instructionsDialog.showModal()});
@@ -77,7 +67,7 @@ function hasChooseDomain() {
 }
 
 
-//------------------RANDOM BUTTONS DOM---------------// 
+//------------------RANDOM BUTTONS IN DOM---------------// 
 function randomButtons() {
 	for(let i = DOM.buttonsChildren.length - 1; i >= 0; i--) {
 		let randomIndex = Math.floor(Math.random() * (i + 1));
@@ -99,11 +89,11 @@ DOM.answer4Btn.addEventListener('click', () => {
 function safeSetNextQuestion() {
 	if (chances > 0 && nr <= 10) {
 		setTimeout(() => {
-			DOM.nextQuestionBtn.style.visibility = 'visible';
+			DOM.nextQuestionBtn.style.display = 'block';
 			DOM.nextQuestionBtn.onclick = work;
 		}, 1500);
 	} else {
-		DOM.nextQuestionBtn.style.visibility = 'hidden';
+		DOM.nextQuestionBtn.style.display = 'none';
 		DOM.nextQuestionBtn.onclick = null;
 	}
 }
@@ -150,14 +140,12 @@ function handleAnswerClick(e) {
 			button.style.color = 'black';
 		})
 
-		setTimeout(() => { 
+		DOM.wrongSound.onended = () => { 
 			DOM.answer4Btn.style.background = 'rgb(6, 194, 6)';
-			if(!DOM.wrongSound.pause()) {
-				DOM.wrongSound.pause();
-				DOM.wrongSound.currentTime = 0;
-				DOM.rightSound.play();
-			}	
-		}, 700);
+			DOM.rightSound.currentTime = 0;
+			DOM.rightSound.play();
+
+		}
 		
 		safeSetNextQuestion();
 	}
@@ -173,6 +161,7 @@ function handleAnswerClick(e) {
 
 
 function startQuestionsGame(domain) {
+
 	if (chances === 0) return;
 	randomButtons();
 	DOM.textQuestion.innerHTML = domain[nr].question;
@@ -227,7 +216,7 @@ function changeQuestion(x) {
   return function callChangeQuestion() {
     DOM.buttonsChildren.forEach((button) => { 
 		button.style.background = "rgba(211, 211, 211, 0.42)"});
-    DOM.nextQuestionBtn.style.visibility = 'hidden';
+    DOM.nextQuestionBtn.style.display = 'none';
     startQuestionsGame(x);
   }
 }
@@ -263,6 +252,11 @@ function gameOver() {
 		DOM.countNrQuestion.innerHTML = '0';
 		DOM.wrapperColors.style.display = 'none';
 		DOM.countText.style.display = 'none';
+		DOM.results.style.display = 'block';
+		DOM.mistakes.style.display = 'block';
+		DOM.results.innerHTML = `Right answers: <span class="nrQ">${lastScore}</span> from 10`;
+		DOM.mistakes.innerHTML = `Wrong answers: <span class="nrW">${10 - lastScore}</span> from 10`;
+		DOM.gameDialog.style.textAlign = 'left';
 		DOM.score.innerHTML = `${lastScore}` + '0';
 		DOM.nextQuestionBtn.onclick = null;
 		DOM.chooseBtn.removeAttribute('data-domain');
@@ -272,7 +266,6 @@ function gameOver() {
 	} 
 }
 
-
 function restartGame() {
 	nr = 0;
   scoreNr = 0;
@@ -280,12 +273,13 @@ function restartGame() {
 	count = 0;
 	chances = 3;
 	DOM.score.innerHTML = '00';
-
 	DOM.answer1Btn.innerHTML = '';
 	DOM.answer2Btn.innerHTML = '';
 	DOM.answer3Btn.innerHTML = '';
 	DOM.answer4Btn.innerHTML = '';
 
+	DOM.results.style.display = 'none';
+	DOM.mistakes.style.display = 'none';
 	DOM.countText.style.display = 'block';
 	DOM.containerChances.style.display = 'block';
 	DOM.countNrQuestion.innerHTML = Number(count++);
