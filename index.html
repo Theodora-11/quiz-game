@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./assets/favicon.ico"> 
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_right_alt,close&display=block" rel="stylesheet" />
-  <script src="script1.js" type="module"></script>
+  <script src="./JS/main.js" type="module"></script>
   <title>Knowledge Questions Game</title>
 </head>
 <body>
@@ -63,7 +64,9 @@
           </div>
           <span>Score: <span class="score" id="score">00</span></span>
         </div>
-
+        
+        <p class="results"></p>
+        <p class="mistakes"></p>
         <div class="game-board" id="game-board">
           <p class="count-text" id="count-text">
             Question <span class="count-number" id="count-number">1</span> from 10:</p>
@@ -93,7 +96,7 @@
       </dialog>
 
       <dialog class="alert-message" id="alert-message">
-        <button class="btn-close-alert material-symbols-outlined" id="btn-close-alert">close</button>
+        <button class="btn-close-alert material-symbols-outlined" id="btn-close-alert">arrow_right_alt</button>
         <div class="container-alert">
           <p class="alert-text">You have to finish your questions!</p>
           <p>Don't lose <b>your progress!</b></p>

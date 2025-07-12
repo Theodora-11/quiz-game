@@ -187,7 +187,7 @@ button:hover {
   border-style: none;
   border: 2px solid var(--dark-black); 
   cursor: pointer;
-  visibility: hidden;
+  display: none;
   font-size: clamp(1em, 1em + 1vw, 1.1em);
   font-weight: 600;
   padding: 0.4em 0;
@@ -336,4 +336,16 @@ button:hover {
   text-align: center;
   transition: color 0.3s ease;
   width: 80%;
+}
+
+/* .results, .mistakes {
+ display: none;
+} */
+
+.nrQ {
+  color: var(--light-green);
+}
+
+.nrW {
+  color: var(--wrong-color);
 }

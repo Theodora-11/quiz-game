@@ -1,40 +1,43 @@
 export const DOM = {
   // DIALOGS
-  domainDialog: document.querySelector('#domain-dialog'),
   chooseBtn: document.querySelector('#choose-domain-btn'),
   closeDomainBtn: document.querySelector('#btn-close-domain'),
+  closeDialogBtn: document.querySelector('#btn-close-dialog'),
+  domainDialog: document.querySelector('#domain-dialog'),
+  finishGame: document.querySelector('#close-game-btn'),
   instructionsDialog: document.querySelector('#dialog-instructions'),
   instructionsBtn: document.querySelector('#instructions-btn'),
-  closeDialogBtn: document.querySelector('#btn-close-dialog'),
   wrapperButtons: document.querySelector('#wrapper-buttons'),
-  finishGame: document.querySelector('#close-game-btn'),
 
   // AUDIO
-  wrongSound: document.querySelector('#wrong-answer'),
   rightSound: document.querySelector('#right-answer'),
+  wrongSound: document.querySelector('#wrong-answer'),
   winSound: document.querySelector('#win-game'),
 
   // COLOR PROGRESS
-  wrapperColors: document.querySelector('#wrapper-colors'),
   colorQuestion: [...document.querySelectorAll('#wrapper-colors .color-question')],
+  wrapperColors: document.querySelector('#wrapper-colors'),
 
   // GAME BOARD
-  gameDialog: document.querySelector('#dialog-game'),
-  playBtn: document.querySelector('#play-btn'),
-  closeGameBtn: document.querySelector('#btn-close-game'),
-  textQuestion: document.querySelector('#text-question'),
-  containerAnswers: document.querySelector('#container-answers'),
   buttonsChildren: [...document.querySelectorAll('#container-answers button')],
+  closeAlertBtn: document.querySelector('#btn-close-alert'),
+  closeGameBtn: document.querySelector('#btn-close-game'),
   countNrQuestion: document.querySelector('#count-number'),
+  containerAnswers: document.querySelector('#container-answers'),
   countText: document.querySelector('#count-text'),
+  containerChances: document.querySelector('.container-chances'),
+  domainAlert: document.querySelector('#alert-message'),
+  gameDialog: document.querySelector('#dialog-game'),
+  hearts: [...document.querySelectorAll('.container-chances span')],
+  mistakes: document.querySelector('.mistakes'),
   nextQuestionBtn: document.querySelector('#next-question'),
+  playBtn: document.querySelector('#play-btn'),
+  priviesScore: document.querySelector('#privies-score'),
+  results: document.querySelector('.results'),
   score: document.querySelector('#score'),
   scoreHigh: document.querySelector('#high-score'),
-  domainAlert: document.querySelector('#alert-message'),
-  closeAlertBtn: document.querySelector('#btn-close-alert'),
-  priviesScore: document.querySelector('#privies-score'),
-  containerChances: document.querySelector('.container-chances'),
-  hearts: [...document.querySelectorAll('.container-chances span')],
+  textQuestion: document.querySelector('#text-question'),
+  userResults: document.querySelector('.nrQ'),
 
   // ANSWER BUTTONS
   answer1Btn: document.querySelector('#btn-answer1'),
