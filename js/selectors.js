@@ -13,10 +13,14 @@ export const DOM = {
   rightSound: document.querySelector('#right-answer'),
   wrongSound: document.querySelector('#wrong-answer'),
   winSound: document.querySelector('#win-game'),
+  loseSound: document.querySelector('#lose-game'),
+  backSound: document.querySelector('#back-sound'),
 
   // COLOR PROGRESS
   colorQuestion: [...document.querySelectorAll('#wrapper-colors .color-question')],
   wrapperColors: document.querySelector('#wrapper-colors'),
+  btnTheme: document.querySelector('.wrapper-btn-theme'),
+
 
   // GAME BOARD
   buttonsChildren: [...document.querySelectorAll('#container-answers button')],
@@ -46,7 +50,7 @@ export const DOM = {
   answer4Btn: document.querySelector('#btn-answer4'),
 
   // DOMAIN INPUTS
-  biologyInput: document.querySelector('#biology'),
-  geographyInput: document.querySelector('#geography'),
-  historyInput: document.querySelector('#history')
+  cssInput: document.querySelector('#css'),
+  jsInput: document.querySelector('#js'),
+  reactInput: document.querySelector('#react')
 };

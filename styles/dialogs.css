@@ -1,0 +1,66 @@
+
+.dialog-instructions::backdrop,
+.dialog-domain::backdrop,
+.dialog-game::backdrop,
+.dialog-colors::backdrop {
+  background-color: var(--backdrop-dark);
+}
+
+.alert-message::backdrop {
+  background: var(--backdrop-red);
+}
+
+.alert-message {
+  background-color: var(--alert-message);
+  border: 2px solid var(--wrong-color);
+  border-radius: var(--radius);
+  max-width: 21.875rem;
+  width: 80%;
+}
+
+.dialog-instructions {
+  border-style: none;
+  border-radius: var(--radius);
+  max-width: 34.375rem;
+  width: 90%;
+}
+
+.dialog-game {
+  background: var(--backdrop-light);
+  color: var(--color);
+  backdrop-filter: blur(var(--blur));
+  border-style: none;
+  border-radius: var(--radius);
+  width: 95%;
+  max-width: 34.375rem;
+  height: 555.78px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 1s ease;
+  overflow-y: hidden;
+
+  & .text-question, .count-text, .count-number {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+  }
+}
+
+.dialog-game.rotate-game {
+  text-align: left;
+  height: 20rem;
+  transform: scale(0.1) rotate(0deg);
+}
+
+.dialog-game.active {
+  transform: scale(1) rotate(360deg);
+}
+
+.dialog-domain {
+  background: var(--backdrop-light); 
+  backdrop-filter: blur(var(--blur));
+  border-style: none;
+  border-radius: var(--radius);
+  color: var(--color);
+  width: 90%;
+  max-width: 25rem;
+  padding: 2rem;
+}
