@@ -6,10 +6,22 @@ body {
   overflow: hidden;
 }
 
-
 main {
   background-color: var(--principal-color);
   padding: 1rem 0 1.5rem;
+}
+
+.title {
+  position: absolute;
+  display: block;
+  margin-inline: auto;
+  margin-left: 10%;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: 500;
+  z-index: 8;
+  top: 1rem;
+  left: clamp(1rem, 2vw, 4.5rem);
+  color: var(--color);
 }
 
 .container {
@@ -23,7 +35,6 @@ main {
   top: 0;
   width: var(--width);
 }
-
 
 .question-img {
   display: block;
