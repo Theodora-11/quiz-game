@@ -4,25 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="./assets/favicon.ico"> 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_right_alt,close&display=block" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_right_alt,close,dark_mode,light_mode&display=block" rel="stylesheet" />
   <script src="./JS/main.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <title>Knowledge Questions Game</title>
 </head>
 <body>
 
   <main>
     <div class="container">
+
       <img src="./assets/question.png" class="question-img"/>
+      <div class='wrapper-btn-theme'>
+        <button class="material-symbols-outlined btn-theme btn-dark-theme" id="btn-dark-theme">dark_mode</button>
+        <button class="material-symbols-outlined btn-theme btn-light-theme" id="btn-light-theme">light_mode</button>
+      </div>
+
+
       <dialog class="dialog-instructions" id="dialog-instructions">
         <button class="btn-close-dialog material-symbols-outlined" id="btn-close-dialog">close</button>
         <h3>Instructions:</h3>
         <ul class="list-instructions-game">
-          <li>Try to pass the test by answering all the general knowledge questions. Put your brain to work with questions from various fields</li>
-          <li>The questions are far from easy but not impossible either. Some questions are completely guessable, while others require more brainstorming.It's hard, but <b>NOT IMPOSSIBLE!!!</b></li>
-          <li>You can choose your favorite field in which you can progress! Good luck and don't forget to learn from your mistakes!</li>
+          <li><b>Jump into the game and pick your category!</b> <br>Test your skills in CSS, JavaScript, or React by answering as many questions as you can.</li>
+          <li><b>You have 3 lives and earn points!</b> <br>Earn +10 points for each correct answer. Be careful—each mistake costs you a life. The game ends when you run out of lives.”</li>
+          <li><b>Beat the high score!</b><br>Collect as many points as possible and see if you can top the leaderboard.”</li>
         </ul>
       </dialog>
+
 
       <dialog class="dialog-domain" id="domain-dialog">
         <button class="btn-close-domain material-symbols-outlined" id="btn-close-domain">arrow_right_alt</button>
@@ -30,28 +40,30 @@
 
         <div class="container-inputs" id="container-inputs">
           <label for="biology" class="label">
-            <input type="radio" id="biology" name="domain" value="biology">Biology
+            <input type="radio" id="css" name="domain" value="css">CSS
           </label>
 
           <label for="geography" class="label">
-            <input type="radio" id="geography" name="domain" value="geography">Geography
+            <input type="radio" id="js" name="domain" value="js">Java Script
           </label>
 
           <label for="history" class="label">
-            <input type="radio" id="history" name="domain" value="history">History
+            <input type="radio" id="react" name="domain" value="react">React
           </label>
         </div>
 
       </dialog>
 
+
       <div class="wrapper-buttons" id="wrapper-buttons">
-        <button class="instructions-btn button-front" id="instructions-btn">Instructions Game</button>
-        <button class="play-btn button-front" id="play-btn">Play Game</button>
-        <button class="choose-btn button-front" id="choose-domain-btn" data-domain>Choose Domain</button>
+        <button class="instructions-btn button-front" id="instructions-btn" title="instructions">Instructions Game</button>
+        <button class="play-btn button-front" id="play-btn" title="play game">Play Game</button>
+        <button class="choose-btn button-front" id="choose-domain-btn" data-domain title="choose domain">Choose Domain</button>
         <span class="score-game" id="privies-score">Score: 00</span>
         <span class="score-game" id="high-score">High score: 00</span>
         
       </div>
+
 
       <dialog class="dialog-game" id="dialog-game">
         <button class="btn-close-game material-symbols-outlined" id="btn-close-game">close</button>
@@ -77,6 +89,7 @@
             <button class="button" id="btn-answer3" disabled></button>
             <button class="button" id="btn-answer4" disabled></button>
           </div>
+
           <button class="next-qustion button-next" id="next-question">NEXT</button>
           <p class="finish-game" id="finish-game"></p>
         </div>
@@ -95,6 +108,7 @@
       </div>
       </dialog>
 
+
       <dialog class="alert-message" id="alert-message">
         <button class="btn-close-alert material-symbols-outlined" id="btn-close-alert">arrow_right_alt</button>
         <div class="container-alert">
@@ -104,9 +118,12 @@
          <button class="button-close" id="close-game-btn">CLOSE GAME</button>  
       </dialog>
 
+
       <audio id="wrong-answer" src="./assets/wrong-answer.wav"></audio>
       <audio id="right-answer" src="./assets/right-answer.wav"></audio>
-      <audio id="win-game" src="./assets/win-game.wav"></audio>
+      <audio id="win-game" src="./assets/win-sound.wav"></audio>
+      <audio id="lose-game" src="./assets/lose-game.wav"></audio>
+      <audio id="back-sound" src="./assets/back-sound.wav"></audio>
     </div>
 
     <p class="finish chances"></p>

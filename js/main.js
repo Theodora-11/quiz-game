@@ -1,6 +1,15 @@
-import { arrBiology, arrGeography, arrHistory } from './domains.js';
+import { arrCSS, arrJavaScript, arrReact } from './domains.js';
 import { DOM } from './selectors.js';
 import { checkInputs } from './inputs.js';
+
+
+//-------------CHANGE THEME MOD-----------//
+DOM.btnTheme.addEventListener('click', (e) => {
+	if(e.target.classList.contains('btn-theme')) {
+		document.body.classList.toggle('dark');
+		console.log('is dark');
+	}
+});
 
 
 checkInputs();
@@ -24,36 +33,40 @@ function openDomainDialog() {
 }
 
 
-//----------------DOMAINS FUNCTION-------------//
+//----------------DOMAINS GAME-------------//
 DOM.playBtn.addEventListener('click', hasChooseDomain);
 let work; 
+
 
 function hasChooseDomain() {
 	DOM.closeGameBtn.addEventListener('click', alertMessage);
 	DOM.closeAlertBtn.addEventListener('click', closeDomainAlert);
 	
-  if (DOM.chooseBtn.dataset.domain === DOM.biologyInput.value) {
+  if (DOM.chooseBtn.dataset.domain === DOM.cssInput.value) {
+		playBackMusic();
 		DOM.wrapperButtons.style.display = 'none';
 		DOM.wrapperColors.style.display = 'flex';
 	  DOM.gameDialog.showModal();
-    startQuestionsGame(arrBiology);
-		let callChangeQuestion = changeQuestion(arrBiology);
+    startQuestionsGame(arrCSS);
+		let callChangeQuestion = changeQuestion(arrCSS);
 		work = callChangeQuestion;
-
-  } else if (DOM.chooseBtn.dataset.domain === DOM.geographyInput.value) {
+		
+  } else if (DOM.chooseBtn.dataset.domain === DOM.jsInput.value) {
+		playBackMusic();
 		DOM.wrapperButtons.style.display = 'none';
 		DOM.wrapperColors.style.display = 'flex';
 	  DOM.gameDialog.showModal();
-    startQuestionsGame(arrGeography);
-		let callChangeQuestion = changeQuestion(arrGeography);
+    startQuestionsGame(arrJavaScript);
+		let callChangeQuestion = changeQuestion(arrJavaScript);
 		work = callChangeQuestion;
-
-  } else if(DOM.chooseBtn.dataset.domain === DOM.historyInput.value) {
+		
+  } else if(DOM.chooseBtn.dataset.domain === DOM.reactInput.value) {
+		playBackMusic();
 		DOM.wrapperButtons.style.display = 'none';
 		DOM.wrapperColors.style.display = 'flex';
 	  DOM.gameDialog.showModal();
-    startQuestionsGame(arrHistory);
-		let callChangeQuestion = changeQuestion(arrHistory);
+    startQuestionsGame(arrReact);
+		let callChangeQuestion = changeQuestion(arrReact);
 		work = callChangeQuestion;
 
 
@@ -66,6 +79,17 @@ function hasChooseDomain() {
   }
 }
 
+//---------------PLAY BACKGROUND MUSIC-----------//
+
+function playBackMusic() {
+	DOM.backSound.play();
+	DOM.backSound.addEventListener('timeupdate', () => {
+		if (DOM.backSound.currentTime > DOM.backSound.duration - 0.4) {
+			DOM.backSound.currentTime = 0;
+			DOM.backSound.play();
+		}
+	});
+}
 
 //------------------RANDOM BUTTONS IN DOM---------------// 
 function randomButtons() {
@@ -78,6 +102,7 @@ function randomButtons() {
 	DOM.buttonsChildren.forEach(button => DOM.containerAnswers.appendChild(button));
 }
 
+// -------------INCREASE SCORE------------//
 
 DOM.answer4Btn.addEventListener('click', () => {
 	scoreNr++;
@@ -85,6 +110,9 @@ DOM.answer4Btn.addEventListener('click', () => {
 	DOM.score.innerHTML = `${scoreNr}` + '0';
 })
 
+
+
+//---------ADD NEXT QUESTION-----//
 
 function safeSetNextQuestion() {
 	if (chances > 0 && nr <= 10) {
@@ -107,17 +135,19 @@ let lastScore = 0;
 let chances = 3;
 
 
+
 DOM.buttonsChildren.forEach(button => {
 	button.disabled = false;
 	button.removeEventListener('click', handleAnswerClick);
 	button.addEventListener('click', handleAnswerClick);
 })
 
+//-------------- HANDLE ANSWER CLICK-------------//
 
 function handleAnswerClick(e) {
 	const btnTarget = e.target;
 	const dataRightBtn = btnTarget.dataset.answer;
-
+	
 	if(dataRightBtn === 'right') {
 		DOM.rightSound.currentTime = 0;
 		DOM.rightSound.play();
@@ -144,7 +174,6 @@ function handleAnswerClick(e) {
 			DOM.answer4Btn.style.background = 'rgb(6, 194, 6)';
 			DOM.rightSound.currentTime = 0;
 			DOM.rightSound.play();
-
 		}
 		
 		safeSetNextQuestion();
@@ -160,7 +189,10 @@ function handleAnswerClick(e) {
 }
 
 
+//---------------START QUIZ-----------// 
+
 function startQuestionsGame(domain) {
+	DOM.gameDialog.style.textAlign = 'center';
 
 	if (chances === 0) return;
 	randomButtons();
@@ -200,17 +232,18 @@ function startQuestionsGame(domain) {
 }
 
 
-
 DOM.finishGame.addEventListener('click', closeGameProgress);
+
+//---------------CLOSE GAME PROGRESS------------// 
 
 function closeGameProgress() {
 	gameOver();
 	restartGame();
 	DOM.wrapperColors.style.display = 'none';
 	DOM.domainAlert.close();
-
 }
 
+//------------CHANGE QUESTION DOMAIN -------------//
 
 function changeQuestion(x) {
   return function callChangeQuestion() {
@@ -221,10 +254,38 @@ function changeQuestion(x) {
   }
 }
 
+//----------------SHOW LOSE MESSAGE -----------//
+function shoeMessageLoseChances() {
+	if(DOM.chooseBtn.dataset.domain === DOM.cssInput.value) {
+		DOM.textQuestion.innerHTML = arrCSS[arrCSS.length -1].finish2;
 
+	} else if( DOM.chooseBtn.dataset.domain === DOM.jsInput.value) {
+		DOM.textQuestion.innerHTML = arrJavaScript[arrJavaScript.length -1].finish2;
+
+	} else if(DOM.chooseBtn.dataset.domain === DOM.reactInput.value) {
+		DOM.textQuestion.innerHTML = arrReact[arrReact.length -1].finish2;
+	}
+}
+
+
+//----------------SHOW WIN MESSAGE -----------//
+function showMessageWin() {
+	if(DOM.chooseBtn.dataset.domain === DOM.cssInput.value) {
+		DOM.textQuestion.innerHTML = arrCSS[arrCSS.length -1].finish1;
+
+	} else if( DOM.chooseBtn.dataset.domain === DOM.jsInput.value) {
+		DOM.textQuestion.innerHTML = arrJavaScript[arrJavaScript.length -1].finish1;
+
+	} else if(DOM.chooseBtn.dataset.domain === DOM.reactInput.value) {
+		DOM.textQuestion.innerHTML = arrReact[arrReact.length -1].finish1;
+	}
+}
+
+
+//---------------GAME OVER-------------//
 function gameOver() {
 	if(nr > 10 || chances === 0) {
-
+		DOM.backSound.pause();
 		localStorage.setItem('lastScore', lastScore);
 		let highScore = localStorage.getItem('highScore');
 		if(!highScore) highScore = 0;
@@ -245,28 +306,47 @@ function gameOver() {
 			button.style.display = "none";
 		})
 
-		if(chances === 0) {DOM.textQuestion.innerHTML = arrBiology[arrBiology.length -1].finish2} 
-		if(nr > 10) {DOM.textQuestion.innerHTML = arrBiology[arrBiology.length -1].finish1}
-		
-		DOM.winSound.play();
+		DOM.gameDialog.classList.add('rotate-game');
+		void DOM.gameDialog.offsetWidth;
+		DOM.gameDialog.classList.add('active');
+
+		if(chances === 0 ) {
+			DOM.loseSound.play();
+			shoeMessageLoseChances();
+		}
+
+		if(nr > 10) {
+			DOM.winSound.play();
+			showMessageWin();
+			confetti({
+				particleCount: 200,
+    		spread: 70,
+    		origin: { y: 0.6 }
+			});
+			DOM.results.innerHTML = `Right answers: <span class="nrQ">${lastScore}</span> from 10`;
+			DOM.mistakes.innerHTML = `Wrong answers: <span class="nrW">${10 - lastScore}</span>`;
+		}
+
+	
 		DOM.countNrQuestion.innerHTML = '0';
 		DOM.wrapperColors.style.display = 'none';
 		DOM.countText.style.display = 'none';
 		DOM.results.style.display = 'block';
 		DOM.mistakes.style.display = 'block';
-		DOM.results.innerHTML = `Right answers: <span class="nrQ">${lastScore}</span> from 10`;
-		DOM.mistakes.innerHTML = `Wrong answers: <span class="nrW">${10 - lastScore}</span> from 10`;
 		DOM.gameDialog.style.textAlign = 'left';
 		DOM.score.innerHTML = `${lastScore}` + '0';
 		DOM.nextQuestionBtn.onclick = null;
 		DOM.chooseBtn.removeAttribute('data-domain');
 		DOM.closeGameBtn.removeEventListener('click', alertMessage);
 		DOM.closeGameBtn.addEventListener('click', restartGame);
-  
 	} 
 }
 
+
+//-------------RESTART GAME------------//
+
 function restartGame() {
+	DOM.backSound.pause();
 	nr = 0;
   scoreNr = 0;
   lastScore = 0;
@@ -282,10 +362,13 @@ function restartGame() {
 	DOM.mistakes.style.display = 'none';
 	DOM.countText.style.display = 'block';
 	DOM.containerChances.style.display = 'block';
+	DOM.gameDialog.style.textAlign = 'left';
 	DOM.countNrQuestion.innerHTML = Number(count++);
 
 	DOM.wrapperButtons.style.display = 'flex';
 	DOM.wrapperColors.style.display = 'flex';
+	DOM.gameDialog.classList.remove('rotate-game');
+	DOM.gameDialog.classList.remove('active');
 	DOM.gameDialog.close();
 	DOM.hearts.forEach(heart => heart.classList.remove('lose-chance'));
 	const containerInputs = document.querySelector('#container-inputs');
