@@ -19,7 +19,7 @@ export const DOM = {
   // COLOR PROGRESS
   colorQuestion: [...document.querySelectorAll('#wrapper-colors .color-question')],
   wrapperColors: document.querySelector('#wrapper-colors'),
-  btnTheme: document.querySelector('.wrapper-btn-theme'),
+  wrapperTheme: document.querySelector('.wrapper-btn-theme'),
 
 
   // GAME BOARD
