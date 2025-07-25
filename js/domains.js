@@ -258,7 +258,7 @@ export const arrReact = [
   },
   
   {
-    finish1: "Great job! You've completed the React quiz! Keep building awesome apps!",
+    finish1: "Great job! You've completed the React quiz! Your brain is impressive !",
     finish2: "Oops, no more chances! Take a break and try again soon! ☕",
   }
 ];

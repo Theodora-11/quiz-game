@@ -21,7 +21,7 @@
   --light-green: rgb(8, 214, 8);
   --gold: rgb(255, 215, 0);
   --dark-red: rgb(234, 23, 23);
-  --heart-lose-color: rgba(208, 141, 141, 0.63);
+  --heart-lose-color: rgba(194, 146, 146, 0.63);
 
   /******** DEFAULT SETTINGS *******/
   --radius: clamp(0.3rem, 1vw, 0.4rem);
@@ -30,6 +30,7 @@
   --blur: 2px;
 
 }
+
 
 body.dark {
   --alert-message: rgb(206, 206, 206);
@@ -56,7 +57,34 @@ body.dark {
 
 }
 
+@media (prefers-color-scheme: dark) {
+  
+  body.os-mode {
+    --alert-message: rgb(206, 206, 206);
+    --backdrop-dark: hsla(0, 0%, 18%, 0.688);
+    --backdrop-light: hsla(0, 0%, 9%, 0.658);
+    --backdrop-red:  rgba(209, 44, 44, 0.179);
+    --color: hsl(0, 0%, 87%);
+    --principal-color: rgb(20, 79, 119);
+    --dark-blue:  rgb(112, 147, 212);
+    --hover-color1: rgba(129, 195, 240, 0.852);
+    --btn-front-color:  rgb(180, 180, 180); 
+    --light-white: rgb(30, 30, 30);
+    --dark-black2: rgba(181, 180, 180, 0.333);
+    --btn-answer-hover:  rgb(48, 48, 49);
+    --light-gray: rgb(51, 51, 51);
 
+    & button.btn-dark-theme {
+      display: none;
+    }
+
+    & button.btn-light-theme {
+      display: block;
+    }
+
+  }
+}
+  
 & button.btn-dark-theme {
     display: block;
   }

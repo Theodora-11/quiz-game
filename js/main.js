@@ -4,12 +4,27 @@ import { checkInputs } from './inputs.js';
 
 
 //-------------CHANGE THEME MOD-----------//
-DOM.btnTheme.addEventListener('click', (e) => {
-	if(e.target.classList.contains('btn-theme')) {
-		document.body.classList.toggle('dark');
-		console.log('is dark');
-	}
+
+const wrapperTheme = document.querySelector('.wrapper-btn-theme');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+function applyOSTheme() {
+  if (prefersDarkScheme.matches) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+}
+
+window.addEventListener('DOMContentLoaded', applyOSTheme);
+prefersDarkScheme.addEventListener('change', applyOSTheme);
+
+wrapperTheme.addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn-theme')) {
+    document.body.classList.toggle('dark');
+  }
 });
+
 
 
 checkInputs();
